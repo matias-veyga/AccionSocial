@@ -1,6 +1,7 @@
 package Entity;
 
 import jakarta.persistence.*;
+import java.time.LocalDate;
 
 /**
  * Entidad que representa la documentación presentada en un legajo
@@ -21,6 +22,8 @@ public class DocumentacionPresentada {
     private DocumentacionPorBeneficio documentacionPorBeneficio;
     private String presentadoFaltante;
     private String observaciones;
+    private String ubicacionFisica;
+    private LocalDate fecha;
     
    
     public DocumentacionPresentada() {
@@ -80,5 +83,20 @@ public class DocumentacionPresentada {
         this.observaciones = observaciones;
     }
     
-   
+    public String getUbicacionFisica() {
+        return ubicacionFisica;
+    }
+    
+    public void setUbicacionFisica(String ubicacionFisica) {
+        this.ubicacionFisica = ubicacionFisica;
+    }
+    
+    public LocalDate getFecha() {
+        return fecha;
+    }
+    
+    public void setFecha(LocalDate fecha) {
+        this.fecha = fecha;
+    }
+    
 }

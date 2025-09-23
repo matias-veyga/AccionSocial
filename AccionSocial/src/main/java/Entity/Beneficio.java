@@ -8,26 +8,23 @@ import java.util.List;
  * Entidad que representa un beneficio de acción social
  */
 @Entity
-
+@Table(name = "beneficios")
 public class Beneficio {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-  
     private Long id;
     private String nombre;
     private String estado;
     private LocalDate fechaInicio;
     private LocalDate fechaFin;
     
+    @ManyToOne
+    @JoinColumn(name = "tipo_beneficio_id")
+    private TipoBeneficio tipoBeneficio;
+    
     @OneToMany(mappedBy = "beneficio", cascade = CascadeType.ALL)
     private List<DocumentacionPorBeneficio> documentacionesPorBeneficio;
-    
-    @OneToMany(mappedBy = "beneficio", cascade = CascadeType.ALL)
-    private List<BeneficioUnidad> beneficiosUnidad;
-    
-    @OneToMany(mappedBy = "beneficio", cascade = CascadeType.ALL)
-    private List<BeneficioMonetario> beneficiosMonetarios;
     
     @OneToMany(mappedBy = "beneficio", cascade = CascadeType.ALL)
     private List<Legajo> legajos;
@@ -86,6 +83,14 @@ public class Beneficio {
         this.fechaFin = fechaFin;
     }
     
+    public TipoBeneficio getTipoBeneficio() {
+        return tipoBeneficio;
+    }
+    
+    public void setTipoBeneficio(TipoBeneficio tipoBeneficio) {
+        this.tipoBeneficio = tipoBeneficio;
+    }
+    
     
     public List<DocumentacionPorBeneficio> getDocumentacionesPorBeneficio() {
         return documentacionesPorBeneficio;
@@ -94,26 +99,6 @@ public class Beneficio {
     public void setDocumentacionesPorBeneficio(List<DocumentacionPorBeneficio> documentacionesPorBeneficio) {
         this.documentacionesPorBeneficio = documentacionesPorBeneficio;
     }
-    
-   
-    public List<BeneficioUnidad> getBeneficiosUnidad() {
-        return beneficiosUnidad;
-    }
-    
-    public void setBeneficiosUnidad(List<BeneficioUnidad> beneficiosUnidad) {
-        this.beneficiosUnidad = beneficiosUnidad;
-    }
-    
-   
-    public List<BeneficioMonetario> getBeneficiosMonetarios() {
-        return beneficiosMonetarios;
-    }
-    
-    public void setBeneficiosMonetarios(List<BeneficioMonetario> beneficiosMonetarios) {
-        this.beneficiosMonetarios = beneficiosMonetarios;
-    }
-    
-
     public List<Legajo> getLegajos() {
         return legajos;
     }
