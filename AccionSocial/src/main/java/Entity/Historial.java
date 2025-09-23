@@ -14,7 +14,7 @@ public class Historial {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
-    @ManyToOne()
+    @ManyToOne
     @JoinColumn(name = "caso_id")
     private Caso caso;
     private LocalDateTime fechaHora;

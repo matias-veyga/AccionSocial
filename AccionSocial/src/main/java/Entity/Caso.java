@@ -12,7 +12,6 @@ public class Caso {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
     private Long id;
     private String nombre;
     private String apellido;
@@ -25,8 +24,10 @@ public class Caso {
     private String dni;
     private String descripcion;
     private Integer cantidadHijos;
+    private String numeroDeCasa;
+    private String nombreCalle;
     
-    @ManyToOne()
+    @ManyToOne
     @JoinColumn(name = "localidad_id")
     private Localidades localidad;
     
@@ -146,6 +147,22 @@ public class Caso {
     
     public void setCantidadHijos(Integer cantidadHijos) {
         this.cantidadHijos = cantidadHijos;
+    }
+    
+    public String getNumeroDeCasa() {
+        return numeroDeCasa;
+    }
+    
+    public void setNumeroDeCasa(String numeroDeCasa) {
+        this.numeroDeCasa = numeroDeCasa;
+    }
+    
+    public String getNombreCalle() {
+        return nombreCalle;
+    }
+    
+    public void setNombreCalle(String nombreCalle) {
+        this.nombreCalle = nombreCalle;
     }
     
     
