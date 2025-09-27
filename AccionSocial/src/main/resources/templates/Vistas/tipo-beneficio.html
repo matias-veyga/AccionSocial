@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Tipos de Beneficio - Acción Social</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-4">
+        <h1 class="mb-4">Gestión de Tipos de Beneficio</h1>
+        
+      
+        <div class="card mb-4">
+            <div class="card-header">
+                <h3>Nuevo Tipo de Beneficio</h3>
+            </div>
+            <div class="card-body">
+                <form th:action="@{/tipo-beneficio/save}" th:object="${tipoBeneficio}" method="post">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="unidadDeDatos" class="form-label">Unidad de Datos</label>
+                                <input type="text" class="form-control" id="unidadDeDatos" th:field="*{unidadDeDatos}" 
+                                       placeholder="Ej: Unidades, Monto" required>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="montoCantidad" class="form-label">Monto/Cantidad</label>
+                                <input type="number" class="form-control" id="montoCantidad" th:field="*{montoCantidad}" 
+                                       step="0.01" required>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary">Guardar Tipo</button>
+                    <a href="/tipo-beneficio" class="btn btn-secondary">Cancelar</a>
+                </form>
+            </div>
+        </div>
+        
+       
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
