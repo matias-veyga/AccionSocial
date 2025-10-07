@@ -1,98 +1,99 @@
 package Entity;
 
 import jakarta.persistence.*;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 /**
- * Entidad que representa el historial de cambios de un caso
+ * Entidad que representa el historial de novedades en el sistema de acción social
  */
 @Entity
-
+@Table(name = "historial")
 public class Historial {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long idNovedad;
+    @ManyToOne
+    @JoinColumn(name = "legajo_id")
+    private Legajo legajo;
+    private String tipoAccion;
+    private LocalDate fecha;
+    @ManyToOne
+    @JoinColumn(name = "beneficio_id")
+    private Beneficio beneficio;
     
     @ManyToOne
-    @JoinColumn(name = "caso_id")
-    private Caso caso;
-    private LocalDateTime fechaHora;
-    private String campoModificado;
-    private String valorAnterior;
-    private String valorNuevo;
-    private String observaciones;
+    @JoinColumn(name = "documentacion_presentada_id")
+    private DocumentacionPresentada documentacionPresentada;
     
- 
+    private String observacion;
+    
     public Historial() {
     }
     
- 
-    public Historial(Caso caso, LocalDateTime fechaHora, String campoModificado, String valorAnterior, String valorNuevo, String observaciones) {
-        this.caso = caso;
-        this.fechaHora = fechaHora;
-        this.campoModificado = campoModificado;
-        this.valorAnterior = valorAnterior;
-        this.valorNuevo = valorNuevo;
-        this.observaciones = observaciones;
+    public Historial(Legajo legajo, String tipoAccion, LocalDate fecha, Beneficio beneficio, 
+                     DocumentacionPresentada documentacionPresentada, String observacion) {
+        this.legajo = legajo;
+        this.tipoAccion = tipoAccion;
+        this.fecha = fecha;
+        this.beneficio = beneficio;
+        this.documentacionPresentada = documentacionPresentada;
+        this.observacion = observacion;
     }
     
-
-    public Long getId() {
-        return id;
+    public Long getIdNovedad() {
+        return idNovedad;
     }
     
-    public void setId(Long id) {
-        this.id = id;
+    public void setIdNovedad(Long idNovedad) {
+        this.idNovedad = idNovedad;
     }
     
-    public Caso getCaso() {
-        return caso;
+    public Legajo getLegajo() {
+        return legajo;
     }
     
-    public void setCaso(Caso caso) {
-        this.caso = caso;
+    public void setLegajo(Legajo legajo) {
+        this.legajo = legajo;
     }
     
-    public LocalDateTime getFechaHora() {
-        return fechaHora;
+    public String getTipoAccion() {
+        return tipoAccion;
     }
     
-    public void setFechaHora(LocalDateTime fechaHora) {
-        this.fechaHora = fechaHora;
+    public void setTipoAccion(String tipoAccion) {
+        this.tipoAccion = tipoAccion;
     }
     
-    public String getCampoModificado() {
-        return campoModificado;
+    public LocalDate getFecha() {
+        return fecha;
     }
     
-    public void setCampoModificado(String campoModificado) {
-        this.campoModificado = campoModificado;
+    public void setFecha(LocalDate fecha) {
+        this.fecha = fecha;
     }
     
-    public String getValorAnterior() {
-        return valorAnterior;
+    public Beneficio getBeneficio() {
+        return beneficio;
     }
     
-    public void setValorAnterior(String valorAnterior) {
-        this.valorAnterior = valorAnterior;
+    public void setBeneficio(Beneficio beneficio) {
+        this.beneficio = beneficio;
     }
     
-    public String getValorNuevo() {
-        return valorNuevo;
+    public DocumentacionPresentada getDocumentacionPresentada() {
+        return documentacionPresentada;
     }
     
-    public void setValorNuevo(String valorNuevo) {
-        this.valorNuevo = valorNuevo;
+    public void setDocumentacionPresentada(DocumentacionPresentada documentacionPresentada) {
+        this.documentacionPresentada = documentacionPresentada;
     }
     
-    public String getObservaciones() {
-        return observaciones;
+    public String getObservacion() {
+        return observacion;
     }
     
-    public void setObservaciones(String observaciones) {
-        this.observaciones = observaciones;
+    public void setObservacion(String observacion) {
+        this.observacion = observacion;
     }
-    
-   
 }
